@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection</title>
+</head>
+<body>
+    <h1>Emotion Detection Application</h1>
+    <form action="/detect_emotions" method="POST">
+        <label for="text">Enter text:</label>
+        <textarea name="text" id="text" rows="4" cols="50"></textarea>
+        <br>
+        <button type="submit">Detect Emotions</button>
+    </form>
+
+    {% if emotions %}
+        <h3>Emotions detected:</h3>
+        <ul>
+            {% for emotion, value in emotions.items() %}
+                <li><strong>{{ emotion.capitalize() }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% elif error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
